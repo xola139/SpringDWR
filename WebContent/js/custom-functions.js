@@ -1,22 +1,16 @@
 jQuery(document).ready(function(){
 	
 	//Traemos los valores iniciales de la grafica
-	cargaGrafica.getDatosInicialesGrafica({
-		callback:getCargaInicialGraficaCallBack
-	});
-	
-	
 	cargaGrafica.getDatosInicialesLinear({
 		callback:getCargaInicialGraficaLinearCallBack
 	});
 	
-	
 	//Hacemos el llamado del metodo inciaValoresSecuenciales que contiene un Thread 
 	//para enviar los valores secuenciales
 	cargaGrafica.iniciaValoresSecuenciales();
-	
 
 });
+
 
 
 //Manejador de errores de DWR para javascript
@@ -33,17 +27,19 @@ function enviaLinea(data){
 	if(theJSON.tipo==='grid'){
 		dibujaRow(data)
 	}else{
+		var x;
+		var y;
+		
+		x = theJSON.valores[0].x;
+		y = [ theJSON.valores[0].y,theJSON.valores[1].y,theJSON.valores[2].y]
 		
 		/*Puntos Grafica Linear*/
-		pintaPuntoEnSerie(theJSON.valores[0].y,theJSON.valores[0].x,theJSON.valores[0].numSerie,"Linear");
-		pintaPuntoEnSerie(theJSON.valores[1].y,theJSON.valores[1].x,theJSON.valores[1].numSerie,"Linear");
-		pintaPuntoEnSerie(theJSON.valores[2].y,theJSON.valores[2].x,theJSON.valores[2].numSerie,"Linear");
+		pintaPuntoEnSerie(y,x,"Linear");
 		
 		/*Puntos grafica area*/
-		pintaPuntoEnSerie(theJSON.valores[0].y,theJSON.valores[0].x,theJSON.valores[0].numSerie,"Area");
-		pintaPuntoEnSerie(theJSON.valores[1].y,theJSON.valores[1].x,theJSON.valores[1].numSerie,"Area");
+		pintaPuntoEnSerie(y,x,"Area");
+		
 	}
-	
 }
 
 
@@ -53,36 +49,32 @@ function dibujaRow(data){
 	/*este if es para que el grid no contenga mas de 30 registro esto por motivo de performance
 	 * y eol navegador no se coma la memoria */
 	if ($('#tablaTiempo > tbody > tr').length <= 30){
- 		
-		$("#tablaTiempo").prepend("<tr>" +
+ 		$("#tablaTiempo").prepend("<tr>" +
 				"<td>"+theJSON.fecha+"</td>" +
 				"<td>"+theJSON.folio+"</td>" +
 				"<td>"+theJSON.ip+"</td>" +
 				"<td>"+theJSON.mensaje+"</td>" +
 				"</tr>");
-		
-		
 	}else {
-		
 		$('#tablaTiempo tr:last').remove();
-		
-		
 	}
  	
 	
 }
 
-function pintaPuntoEnSerie(y, x, numSerie, id) {
+function pintaPuntoEnSerie(y, x, id) {
 
 	try{
-		eval(id+'.series[numSerie].addPoint([x,y], true, true)');
-		
+		if(id=="Area"){
+			Area.series[0].addPoint([x,y[0]], false, false);
+			Area.series[1].addPoint([x,y[1]], true, false);
+		}else{
+			Linear.series[0].addPoint([x,y[0]], false, false);
+			Linear.series[1].addPoint([x,y[1]], false, false);
+			Linear.series[2].addPoint([x,y[2]], true, false);
+		}
 	}catch(e){
 		console.log(e);
 	}
 }
-
-
-
-
 

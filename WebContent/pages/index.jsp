@@ -88,7 +88,7 @@
 <!-- Librerias para Graficar --> 
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-2.1.4.js"></script>
 
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/jsHighStocks/highstock.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/highcharts.js"></script>
 
 
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/colores.js" ></script>

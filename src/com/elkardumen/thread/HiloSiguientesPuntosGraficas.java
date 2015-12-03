@@ -80,8 +80,6 @@ public class HiloSiguientesPuntosGraficas implements Runnable {
 		
 		
 		final String finalLinea=linea;
-		
-		
 		Browser.withPage(wctx.getCurrentPage(), new Runnable() {
 			public void run() {
 				ScriptSessions.addFunctionCall("enviaLinea",finalLinea);
@@ -97,10 +95,6 @@ public class HiloSiguientesPuntosGraficas implements Runnable {
 			Task.setActivo(false);
 			
 			toRead.put("FIN_TRANSMISION");
-			
-
-			
-			
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -127,7 +121,7 @@ class Task implements Runnable{
         	System.out.println("Iniciamos Simulacion a enviar datos al LinkedBlockingQueue");
         	
         	while(activo){
-        		Thread.sleep(10000L);
+        		Thread.sleep(60000L);
         		toRead.put("{\"tipo\":\"grid\",\"fecha\":\""+new Date()+"\", \"folio\":\"123\",\"ip\":\"127.0.0.1\",\"mensaje\":\"Tiempo de espera agotado para esta solicitud\" }");	
 
         		long fechaX= new Date().getTime();

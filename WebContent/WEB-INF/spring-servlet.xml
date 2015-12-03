@@ -27,24 +27,24 @@
 	</bean>
 <!--TERMINA ARCHIVOS DE PROPIEDADES -->    
     
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="${jdbc.driverClassName.${ambiente}}" />
-		<property name="url" value="${jdbc.url.${ambiente}}" />
-		<property name="username" value="${jdbc.username.${ambiente}}" />
-		<property name="password" value="${jdbc.password.${ambiente}}" />
-	</bean>
+<!--     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+<!-- 		<property name="driverClassName" value="${jdbc.driverClassName.${ambiente}}" /> -->
+<!-- 		<property name="url" value="${jdbc.url.${ambiente}}" /> -->
+<!-- 		<property name="username" value="${jdbc.username.${ambiente}}" /> -->
+<!-- 		<property name="password" value="${jdbc.password.${ambiente}}" /> -->
+<!-- 	</bean> -->
 	
 	
 	
-	<bean id="jdbcTemplateOracle" class="org.springframework.jdbc.core.JdbcTemplate">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
+<!-- 	<bean id="jdbcTemplateOracle" class="org.springframework.jdbc.core.JdbcTemplate"> -->
+<!-- 		<property name="dataSource" ref="dataSource" /> -->
+<!-- 	</bean> -->
 	
 	
 
-    <bean id="consultasLogProblemasDAO" class="com.elkardumen.dao.impl.OperacionesDAO">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
+<!--     <bean id="consultasLogProblemasDAO" class="com.elkardumen.dao.impl.OperacionesDAO"> -->
+<!-- 		<property name="dataSource" ref="dataSource" /> -->
+<!-- 	</bean> -->
     
     
     <dwr:controller id="dwrController" debug="true">
