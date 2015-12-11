@@ -3,7 +3,7 @@
 ![Settings Window](http://4.bp.blogspot.com/-kKzkmkV7EAE/VmDGVHbsg_I/AAAAAAAALdk/k0J6nPWjfyQ/s320/SpringDWR3.png
 )
 
-El proyecto muestra un ejemplo de como se puede trabajar con las tecnologias :
+El proyecto muestra como se puede trabajar con las tecnologias :
 
 + Java 1.7 
 + Spring 3.0.5 
